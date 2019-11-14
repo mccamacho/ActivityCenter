@@ -1,0 +1,25 @@
+@{
+    Layout = "_Layout";
+}
+
+@using DojoActivity.Models
+@using System.Linq
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <a class="float-right" href="/logout">Log Out</a>
+    <a class="float-left" href="/dashboard"> Dashboard</a>
+@{
+    <div class="jumbotron">
+        <h1 class="text-center">@ViewBag.Title</h1>
+    </div>
+    <h3>Coordinator Name: @ViewBag.CoordinatorName</h3>
+    <h3>Description: @ViewBag.Description</h3>
+}
+    
+</body>
+</html>

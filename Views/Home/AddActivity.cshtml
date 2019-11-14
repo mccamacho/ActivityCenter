@@ -1,0 +1,62 @@
+@{
+    Layout = "_Layout";
+}
+@if (ViewBag.err !=null){
+    <div class= "alert alert-danger">
+        <strong>@ViewBag.err</strong>
+    </div>
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<hr>
+<div class="col-md-10">
+    <div class="container">
+        <a class="float-right" href="/dashboard"> Dashboard</a>
+        <h2>Add a Activity</h2>
+        @model DojoActivity.Models.Activity
+        <form action="CreateActivity" method="POST">
+            <div class="form-group">
+                <label>Title:</label>
+                <span class="err" asp-validation-for="Title"></span>
+                <input type="text"class="form-control" asp-for="Title">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <span class="err" asp-validation-for="Date"></span>
+                <input class="form-control" asp-for="Date">
+            </div>
+            <div class="form-group">
+                <label>Time:</label>
+                <span class="err" asp-validation-for="Time"></span>
+                <input class="form-control" asp-for="Time">
+            </div>
+            <div class="form-group">
+                <label>Duration (hours):</label>
+                <span class="err" asp-validation-for="Duration"></span>
+                <input class="form-control" asp-for="Duration">
+                
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <span class="err" asp-validation-for="Description"></span>
+                <input type="text" class="form-control" asp-for="Description">
+            </div>
+           
+            
+            <button type="submit" class="btn btn-primary">Create Activity</button>
+        </form>
+    </div>
+</div>
+    
+</body>
+</html>

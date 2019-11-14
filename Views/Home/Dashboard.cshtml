@@ -1,0 +1,67 @@
+@{
+    Layout = "_Layout";
+}
+
+@using DojoActivity.Models
+@using System.Linq
+
+<a class="float-right" href="/logout">Log Out</a>
+<h2>Dojo Activity Center  </h2>
+<table class="table table-striped">
+    <tr>
+        <th>Activity</th>
+        <th>Date and Time</th>
+        <th>Duration (Hours)</th>
+        <th>Event Coordinator</th>
+        <th>Number of Participants</th>
+        <th>Action</th>
+    </tr>
+
+    @{
+    foreach(var activity in @ViewBag.Activities)
+    {
+    
+    <tr>
+        <td><a href="activity/@activity.ActivityId"> @activity.Title</a></td>
+        <td>@activity.Date.ToString("MMMM dd") @@ @activity.Time.ToString("h:mm tt")</td>
+        <td>@activity.Duration</td>
+        <td>@activity.CoordinatorName</td>
+        <td>@activity.JoiningUser.Count</td>
+        <td>
+            <div class="form-row">
+               @{
+                    bool isGoing = false;
+                    foreach(var guest in activity.JoiningUser)
+                    {
+                        if(guest.UserId == ViewBag.User.UserID)
+                        {
+                            isGoing = true;
+                            break;
+                        }
+                    }
+                    if(activity.Coordinator == ViewBag.User.UserID)
+                    {
+                      <a href="/delete/@activity.ActivityId" class="mr-2 btn btn-danger btn-xs">Delete</a>
+                        
+                    }
+                    
+                    else if(isGoing)
+                    {
+                        <a href="/unjoin/@activity.ActivityId" class="ml-2 btn btn-warning btn-xs">Leave</a> 
+                    }
+                    else
+                    {
+                        <a href="/join/@activity.ActivityId" class="ml-2 btn btn-success btn-xs">Join</a>   
+                    }
+               
+                }
+                </div>
+        </td>
+                  
+    </tr>
+    }
+}
+
+
+</table>
+<a class="btn btn-primary" href="AddActivity"> Add New Activity</a>

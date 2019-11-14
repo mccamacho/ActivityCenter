@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron text-center">
+    <h1>Welcome</h1>
+</div>
+@if (ViewBag.err !=null){
+    <div class= "alert alert-danger">
+        <strong>@ViewBag.err</strong>
+    </div>
+}
+<div class="row">
+    <div class="col-md-8 card card-body bg-light">
+        <partial name="Register.cshtml" />
+    </div>
+    <div class="col-md-4 card card-body bg-light">
+        <partial name="Login.cshtml" />
+    </div>
+</div>
